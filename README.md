@@ -1,70 +1,139 @@
-# Getting Started with Create React App
+🌍 Nations
+A React-powered web application that allows users to explore countries across the world by searching for their name or browsing by region. It fetches real-time data from the REST Countries API and presents detailed country information using clean visuals and interactive UI.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🚀 Live Demo: https://shivansh170.github.io/Nations/#/
 
-## Available Scripts
+📌 Features
+🔎 Search by Country Name — Instantly retrieve detailed information for any country.
 
-In the project directory, you can run:
+🌐 Region-Based Filtering — Browse all countries by regions like Africa, Asia, Europe, etc.
 
-### `npm start`
+🗃️ Dynamic Data Fetching — Real-time fetch from REST Countries API.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+🧠 Global State Management — Managed using React’s Context API.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+💾 Persistent Data — Keeps search and region preferences using localStorage.
 
-### `npm test`
+🖼️ Flag, Map & Metadata — Flag, capital, population, languages, currency, timezone & more.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+🎥 Background Video — Hero section with an immersive background video.
 
-### `npm run build`
+📱 Responsive UI — Fully responsive and optimized for mobile devices.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+🚀 Deployed on GitHub Pages — Supports client-side routing via HashRouter.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+🧰 Tech Stack
+Frontend: React
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Routing: React Router v6 (HashRouter)
 
-### `npm run eject`
+Global State: Context API
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Data Source: REST Countries API
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Styling: Tailwind CSS
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Deployment: GitHub Pages
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+📁 Folder Structure (Simplified)
+pgsql
+Copy
+Edit
+Nations/
+├── public/
+├── src/
+│   ├── mycomponents/
+│   │   ├── About.jsx
+│   │   ├── Appcontext.js
+│   │   ├── Contact.jsx
+│   │   ├── Countryplaycard.jsx
+│   │   ├── Finalpage.jsx
+│   │   ├── Footer.jsx
+│   │   ├── Header.jsx
+│   │   ├── Hero.jsx
+│   │   ├── Region.jsx
+│   │   ├── Terms.jsx
+│   ├── App.jsx
+│   ├── index.js
+│   └── index.css
+🛠️ Local Development
+Follow these steps to run the project locally:
 
-## Learn More
+1. Clone the repository
+bash
+Copy
+Edit
+git clone https://github.com/shivansh170/Nations.git
+cd Nations
+2. Install dependencies
+bash
+Copy
+Edit
+npm install
+3. Start the development server
+bash
+Copy
+Edit
+npm start
+Visit http://localhost:3000/Nations/#/ in your browser.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+🚀 Deployment (GitHub Pages)
+Ensure your package.json includes the following:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+json
+Copy
+Edit
+"homepage": "https://shivansh170.github.io/Nations"
+Then deploy using:
 
-### Code Splitting
+bash
+Copy
+Edit
+npm run build
+npm install --save gh-pages
+npm run deploy
+✅ The project uses HashRouter for compatibility with GitHub Pages routing.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+🧪 Usage Guide
+🔍 Search a country:
 
-### Analyzing the Bundle Size
+Go to Home
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Type a country name (e.g., “India”) and click the search button
 
-### Making a Progressive Web App
+You will be redirected to a detailed info page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+🌍 Browse by region:
 
-### Advanced Configuration
+Use the nav links for regions like Africa, Asia, etc.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Click on any country card to explore its Google Maps location
 
-### Deployment
+🔁 Start Over:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Use the "Start Over" button on the final country page to clear session data and return home
 
-### `npm run build` fails to minify
+🖼️ Sample Screenshots (optional)
+Add screenshot images here if you'd like, such as:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Hero section with background video
+
+Region view grid
+
+Final country data page
+
+📌 Credits
+🌐 API: REST Countries API
+
+📍 Map Embeds: Google Maps
+
+🎨 UI Styling: Tailwind CSS
+
+📦 Hosting: GitHub Pages
+
+📝 License
+This project is licensed under the MIT License.
+Feel free to use, fork, and modify it for personal or educational use.
+
+✨ Author
+Shivansh Lavaniya — GitHub
