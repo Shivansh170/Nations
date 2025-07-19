@@ -1,4 +1,4 @@
-🌍 Nations
+🌍 ContLas
 A React-powered web application that allows users to explore countries across the world by searching for their name or browsing by region. It fetches real-time data from the REST Countries API and presents detailed country information using clean visuals and interactive UI.
 
 🚀 Live Demo: https://shivansh170.github.io/Nations/#/
