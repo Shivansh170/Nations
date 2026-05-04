@@ -19,24 +19,32 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed w-full top-0 flex items-center justify-between z-10 border-solid border-b-2 bg-black bg-opacity-60 text-white border-opacity-25 border-black py-1">
-      <div className="flex items-center gap-2">
+    <header className="fixed w-full top-0 flex items-center justify-between z-40 border-b border-white/10 bg-black/70 backdrop-blur-md text-white px-6 py-3 select-none">
+      <div className="flex items-center gap-3">
         <img
           src="/Gemini_Generated_Image_vpueuvvpueuvvpue.png"
           alt="logo"
-          className="h-12 w-12 lg:h-16 lg:w-16 rounded-full"
+          className="h-10 w-10 lg:h-12 lg:w-12 rounded-full ring-2 ring-emerald-500 shadow-lg shadow-emerald-500/20 object-cover"
         />
-        <h1 className="text-3xl font-bold tracking-wider">Contlas</h1>
+        <span className="text-2xl lg:text-3xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
+          Contlas
+        </span>
       </div>
-      <div className="mr-4 flex items-center">
-        <button className="lg:hidden ml-2" onClick={toggleDropdown}>
+
+      <div className="flex items-center">
+        {/* Mobile menu button */}
+        <button
+          className="lg:hidden ml-2 p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-200"
+          onClick={toggleDropdown}
+          aria-label="Toggle Menu"
+        >
           <svg
             width="24"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="white"
-            strokeWidth="3"
+            strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
           >
@@ -45,17 +53,20 @@ export default function Header() {
             <line x1="3" y1="18" x2="21" y2="18" />
           </svg>
         </button>
+
+        {/* Mobile Dropdown Menu */}
         <div
-          className={`absolute top-16 right-4 p-4 rounded-md bg-white shadow-md space-y-2 transition-all duration-300 ${
-            isVisible ? "block" : "hidden"
-          } lg:hidden`}
+          className={`absolute top-16 right-6 p-4 rounded-xl bg-black/90 border border-white/10 backdrop-blur-lg shadow-2xl space-y-2 transition-all duration-300 w-48 ${
+            isVisible ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"
+          } lg:hidden z-50`}
         >
           <NavLink
             to="/"
-            className="block text-gray-800 hover:text-gray-600 font-medium"
+            className="block text-white hover:text-emerald-400 font-medium px-3 py-2 rounded-lg hover:bg-white/5 transition-colors"
             onClick={() => {
               setCountry("");
               localStorage.removeItem("country");
+              setIsVisible(false);
             }}
           >
             Home
@@ -65,20 +76,25 @@ export default function Header() {
               <NavLink
                 key={region}
                 to={`/region/${region.replace(" ", "")}`}
-                className="block text-gray-800 hover:text-gray-600 font-medium"
+                className="block text-white hover:text-emerald-400 font-medium px-3 py-2 rounded-lg hover:bg-white/5 transition-colors capitalize"
                 onClick={() => handleMobileRegionClick(region)}
               >
-                {region[0].toUpperCase() + region.slice(1)}
+                {region}
               </NavLink>
             )
           )}
         </div>
       </div>
 
-      <nav className="hidden lg:flex gap-4 items-center">
+      {/* Desktop Navigation Links */}
+      <nav className="hidden lg:flex gap-6 items-center">
         <NavLink
           to="/"
-          className="hover:text-green-600 font-medium"
+          className={({ isActive }) =>
+            `font-medium tracking-wide transition-all duration-200 px-3 py-1.5 rounded-lg border-b-2 hover:text-emerald-400 ${
+              isActive ? "text-emerald-400 border-emerald-500 bg-emerald-500/10" : "border-transparent text-gray-300"
+            }`
+          }
           onClick={() => setCountry("")}
         >
           Home
@@ -88,10 +104,14 @@ export default function Header() {
             <NavLink
               key={region}
               to={`/region/${region.replace(" ", "")}`}
-              className="hover:text-green-600 font-medium"
+              className={({ isActive }) =>
+                `font-medium tracking-wide capitalize transition-all duration-200 px-3 py-1.5 rounded-lg border-b-2 hover:text-emerald-400 ${
+                  isActive ? "text-emerald-400 border-emerald-500 bg-emerald-500/10" : "border-transparent text-gray-300"
+                }`
+              }
               onClick={() => handleRegionClick(region)}
             >
-              {region[0].toUpperCase() + region.slice(1)}
+              {region}
             </NavLink>
           )
         )}

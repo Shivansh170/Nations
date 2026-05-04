@@ -2,22 +2,22 @@ import { NavLink } from "react-router";
 
 export function Footer() {
   return (
-    <footer className="w-full bg-black bg-opacity-90 text-white text-sm py-4 px-6 flex flex-col sm:flex-row justify-between items-center shadow-md">
-      <p className="text-center sm:text-left">
-        &copy; {new Date().getFullYear()} Contlas. All rights reserved.
+    <footer className="w-full bg-black/90 backdrop-blur-md text-white text-xs py-5 px-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 select-none">
+      <p className="text-center sm:text-left text-gray-400">
+        &copy; {new Date().getFullYear()} <span className="font-bold text-white tracking-wide">Contlas</span>. All rights reserved. Built with Vite.
       </p>
-      <div className="flex space-x-4 mt-2 sm:mt-0">
+      <div className="flex space-x-6 items-center">
         <NavLink
           to="/terms"
-          className="hover:text-gray-300 transition duration-150"
+          className="text-gray-400 hover:text-emerald-400 hover:underline transition font-medium tracking-wide"
         >
-          <h1>Terms</h1>
+          Terms
         </NavLink>
         <NavLink
           to="/contact"
-          className="hover:text-gray-300 transition duration-150"
+          className="text-gray-400 hover:text-emerald-400 hover:underline transition font-medium tracking-wide"
         >
-          <h1>Contact</h1>
+          Contact
         </NavLink>
       </div>
     </footer>

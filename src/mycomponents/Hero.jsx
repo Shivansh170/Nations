@@ -4,12 +4,13 @@ import { useNavigate } from "react-router";
 
 export default function Hero() {
   const { country, setCountry, setData } = useContext(Appcontext);
-  const [tempCountry, setTempCountry] = useState("Search about any country...");
+  const [tempCountry, setTempCountry] = useState("");
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [fetchingData, setFetchingData] = useState(false);
   const navigate = useNavigate();
 
   const updateCountry = () => {
-    const value =
-      tempCountry !== "Search about any country..." ? tempCountry : "india";
+    const value = tempCountry.trim() !== "" ? tempCountry.trim() : "india";
     setCountry(value);
     localStorage.setItem("country", value);
   };
@@ -20,10 +21,12 @@ export default function Hero() {
       setCountry(storedCountry);
     }
   }, [setCountry]);
+
   useEffect(() => {
     async function fetchResults() {
       if (!country) return;
 
+      setFetchingData(true);
       try {
         const response = await fetch(
           `https://restcountries.com/v3.1/name/${country}?fullText=true`
@@ -40,6 +43,8 @@ export default function Hero() {
       } catch (err) {
         alert("An error occurred while fetching data.");
         console.error("Failed to fetch country data", err);
+      } finally {
+        setFetchingData(false);
       }
     }
 
@@ -47,26 +52,49 @@ export default function Hero() {
   }, [country, navigate, setData]);
 
   return (
-    <section className="w-full h-screen z-0">
+    <section className="relative w-full h-screen z-0 bg-gray-950">
+      {/* Video Loader Overlay */}
+      {!videoLoaded && (
+        <div className="absolute top-0 left-0 w-full h-screen bg-gray-950 flex flex-col items-center justify-center z-20 select-none">
+          <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+          <span className="text-white text-lg font-roboto tracking-wide animate-pulse">
+            Setting up the experience...
+          </span>
+        </div>
+      )}
+
+      {/* Main Search Loader Overlay */}
+      {fetchingData && (
+        <div className="absolute top-0 left-0 w-full h-screen bg-black/75 flex flex-col items-center justify-center z-30 select-none">
+          <div className="w-14 h-14 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+          <span className="text-white text-lg font-medium tracking-wider animate-pulse">
+            Fetching country data...
+          </span>
+        </div>
+      )}
+
       <video
         src="Main.mp4"
         autoPlay
         muted
         loop
+        onCanPlayThrough={() => setVideoLoaded(true)}
         className="absolute top-0 left-0 w-full h-screen object-cover opacity-90 z-0"
       ></video>
+
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:w-1/3">
-        <div className="flex bg-black bg-opacity-60 rounded-md overflow-hidden">
+        <div className="flex bg-black bg-opacity-60 rounded-md overflow-hidden border border-gray-700 backdrop-blur-sm">
           <input
             type="text"
             placeholder="Search about any country..."
             value={tempCountry}
-            className="flex-grow px-4 py-3 text-white bg-transparent outline-none z-10"
+            className="flex-grow px-4 py-3 text-white bg-transparent outline-none z-10 font-roboto"
             onChange={(e) => setTempCountry(e.target.value)}
           />
           <button
-            className="px-4 bg-gray-700 hover:bg-gray-600"
+            className="px-6 bg-emerald-600 hover:bg-emerald-500 transition-colors flex items-center justify-center disabled:opacity-50"
             onClick={updateCountry}
+            disabled={fetchingData}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
